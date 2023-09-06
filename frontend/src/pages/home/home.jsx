@@ -3,7 +3,7 @@ import Header from "../../components/header/header";
 import IconChat from "../../assets/icon-chat.png";
 import IconMoney from "../../assets/icon-money.png";
 import IconSecurity from "../../assets/icon-security.png";
-import Footer from "../../components/footer/footer"
+import Footer from "../../components/footer/footer";
 
 export default function Home() {
     return (
@@ -12,7 +12,7 @@ export default function Home() {
             <main>
                 <div className="banner" aria-label="seedlings grow in a glass filled with money">
                     <section className="banner__content">
-                        <h2 className="banner__content__title">Promoted Content</h2>
+                        <h2 className="sr-only">Promoted Content</h2>
                         <p className="banner__content__subtitle">No fees.</p>
                         <p className="banner__content__subtitle">No minimum deposit.</p>
                         <p className="banner__content__subtitle">High interest rates.</p>

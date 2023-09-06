@@ -30,10 +30,6 @@
             margin: 2rem;
         }
 
-        &__title {
-            @include sr-only;
-        }
-
         &__subtitle {
             font-weight: bold;
             font-size: 1rem;

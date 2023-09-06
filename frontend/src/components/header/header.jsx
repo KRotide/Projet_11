@@ -11,7 +11,7 @@ export default function Header() {
                     <h1 className="sr-only">Argent Bank</h1>
                 </Link>
                 <Link className="main__nav__item" to="/login">
-                    <i className="fa fa-user-circle"></i>
+                    <i className="fa fa-user-circle main__nav__item__icon"></i>
                     Sign In
                 </Link>
             </nav>
