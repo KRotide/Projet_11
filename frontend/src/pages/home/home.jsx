@@ -7,7 +7,7 @@ import Footer from "../../components/footer/footer";
 
 export default function Home() {
     return (
-        <div>
+        <>
             <Header />
             <main>
                 <div className="banner" aria-label="seedlings grow in a glass filled with money">
@@ -20,7 +20,7 @@ export default function Home() {
                     </section>
                 </div>
                 <section className="features">
-                    <h2 className="features__title">Features</h2>
+                    <h2 className="sr-only">Features</h2>
                     <div className="features__item">
                         <img
                             src={IconChat}
@@ -59,6 +59,6 @@ export default function Home() {
                 </section>
             </main>
             <Footer />
-        </div>
+        </>
     )
 }

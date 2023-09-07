@@ -59,10 +59,6 @@
         flex-direction: row;
     }
 
-    &__title {
-        @include sr-only;
-    }
-
     &__item {
         flex: 1;
         padding: 2.5rem;
