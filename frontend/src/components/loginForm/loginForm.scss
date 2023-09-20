@@ -36,6 +36,10 @@
         &__inputRemember {
             display: flex;
 
+            & input {
+                cursor: pointer;
+            }
+
             & label {
                 margin-left: 0.25rem;
             }
@@ -51,6 +55,7 @@
             border-color: $color-tertiary;
             background-color: $color-tertiary;
             color: $color-backgroundLight;
+            cursor: pointer;
         }
     }
 }
