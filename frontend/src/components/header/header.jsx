@@ -1,11 +1,20 @@
 import "./header.scss";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/argentBankLogo.png";
-import { useLocation } from "react-router-dom";
+import { logout } from "../../redux/slices/userSlice";
 
 export default function Header() {
     const location = useLocation();
-    if (location.pathname === "/" || location.pathname === "/login") {
+    const token = useSelector(state => state.user.token);
+    const firstName = useSelector(state => state.user.firstName);
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(logout());
+    };
+
+    if ((location.pathname === "/" || location.pathname === "/login") && !token) {
         return (
             <header>
                 <nav className="main__nav">
@@ -20,7 +29,7 @@ export default function Header() {
                 </nav>
             </header>
         )
-    } else if (location.pathname === "/user")
+    } else if ((location.pathname === "/" || location.pathname === "/user") && token) {
         return (
             <header>
                 <nav className="main__nav">
@@ -31,9 +40,9 @@ export default function Header() {
                     <div>
                         <Link className="main__nav__item" to="/user">
                             <i className="fa fa-user-circle main__nav__item__icon"></i>
-                            Tony
+                            {firstName}
                         </Link>
-                        <Link className="main__nav__item" to="/">
+                        <Link className="main__nav__item" to="/" onClick={handleLogout}>
                             <i className="fa fa-sign-out main__nav__item__icon"></i>
                             Sign Out
                         </Link>
@@ -41,4 +50,5 @@ export default function Header() {
                 </nav>
             </header>
         )
+    }
 }

@@ -1,14 +1,16 @@
 import "./user.scss";
 import Header from "../../components/header/header";
+import { useSelector } from "react-redux";
 import Footer from "../../components/footer/footer";
 
 export default function User() {
+    const { firstName, lastName } = useSelector(state => state.user)
     return (
         <>
             <Header />
             <main className="main bg-dark">
                 <div className="user">
-                    <h1 className="user__title">Welcome back<br />Tony Jarvis!</h1>
+                    <h1 className="user__title">Welcome back<br />{`${firstName} ${lastName}`}!</h1>
                     <button className="user__editButton">Edit Name</button>
                 </div>
                 <h2 className="sr-only">Accounts</h2>

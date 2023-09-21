@@ -44,11 +44,21 @@ export default function Form() {
                 <form onSubmit={handleSubmit}>
                     <div className="login__form__inputWrapper">
                         <label htmlFor="email">Email</label>
-                        <input type="email" id="email" onChange={(e) => setEmail(e.target.value)} />
+                        <input
+                            type="email"
+                            id="email"
+                            autoComplete={rememberMe ? "true" : "false"}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                     </div>
                     <div className="login__form__inputWrapper">
                         <label htmlFor="password">Password</label>
-                        <input type="password" id="password" onChange={(e) => setPassword(e.target.value)} />
+                        <input
+                            type="password"
+                            id="password"
+                            autoComplete={rememberMe ? "true" : "false"}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
                     </div>
                     <div className="login__form__inputRemember">
                         <input type="checkbox" id="remember-me" checked={rememberMe} onChange={handleCheckbox} />

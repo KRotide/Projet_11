@@ -1,17 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  user: {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    userName: "",
+  },
+  token: null,
+};
+
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    user: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      userName: "",
-    },
-    token: null,
-  },
+  initialState,
   reducers: {
     loginSuccess(state, action) {
       state.user = {
@@ -25,9 +27,12 @@ const userSlice = createSlice({
     setToken(state, action) {
       state.token = action.payload.body.token;
     },
+    logout() {
+      return initialState;
+    },
   },
 });
 
-export const { loginSuccess, setToken } = userSlice.actions;
+export const { loginSuccess, setToken, logout } = userSlice.actions;
 
 export default userSlice.reducer;
