@@ -1,0 +1,65 @@
+@import "../../main.scss";
+
+.editUserName {
+    border: 1px solid black;
+    background-color: $color-backgroundLight;
+    width: 20%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+    padding: 0.5rem;
+
+    &__title {
+        margin-top: 0;
+    }
+
+    &__form {
+
+        &__inputWrapper {
+            margin-bottom: 1rem;
+
+            & label {
+                margin-right: 6px;
+            }
+
+            & input {
+                width: 94%;
+                padding: 2px;
+                font-size: 1.2rem;
+
+                @media screen and (min-width: 850px) {
+                    width: 35%;
+                }
+            }
+
+            &--readOnly {
+                background-color: rgb(230, 230, 230);
+                color: #a5a5a5;
+                cursor: not-allowed;
+            }
+        }
+
+        &__button {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            @media screen and (min-width: 850px) {
+                flex-direction: row;
+            }
+
+            &__content {
+                display: block;
+                width: 100%;
+                padding: 8px;
+                font-size: 1.1rem;
+                font-weight: bold;
+                margin-top: 1rem;
+                border-color: $color-tertiary;
+                background-color: $color-tertiary;
+                color: $color-backgroundLight;
+                cursor: pointer;
+            }
+        }
+    }
+}

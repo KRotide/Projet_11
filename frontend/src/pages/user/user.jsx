@@ -1,18 +1,32 @@
 import "./user.scss";
 import Header from "../../components/header/header";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import EditUserName from "../../components/editUserName/editUserName";
 import Footer from "../../components/footer/footer";
 
 export default function User() {
-    const { firstName, lastName } = useSelector(state => state.user)
+    const firstName = useSelector(state => state.user.user.firstName);
+    const lastName = useSelector(state => state.user.user.lastName);
+
+    const [toggleEditUserName, setToggleEditUserName] = useState(false);
+
+    const handeEditUserName = () => {
+        setToggleEditUserName(!toggleEditUserName)
+    };
+
     return (
         <>
             <Header />
             <main className="main bg-dark">
-                <div className="user">
-                    <h1 className="user__title">Welcome back<br />{`${firstName} ${lastName}`}!</h1>
-                    <button className="user__editButton">Edit Name</button>
-                </div>
+                {toggleEditUserName ? (
+                    < EditUserName setToggleEditUserName={setToggleEditUserName} />
+                ) : (
+                    <div className="user">
+                        <h1 className="user__title">Welcome back<br />{firstName}  {lastName} !</h1>
+                        <button className="user__editButton" onClick={handeEditUserName}>Edit Name</button>
+                    </div>
+                )}
                 <h2 className="sr-only">Accounts</h2>
                 <section className="userAccount">
                     <div className="userAccount__content">

@@ -19,6 +19,9 @@
         }
 
         &__item {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
             font-weight: bold;
             color: $color-primary;
             text-decoration: none;
@@ -29,8 +32,15 @@
             }
 
             &__icon {
+                display: inline-block;
                 margin-right: 4px;
+                height: 16px;
             }
+        }
+
+        &__twoItems {
+            display: flex;
+            flex-direction: row;
         }
     }
 }

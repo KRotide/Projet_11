@@ -1,17 +1,31 @@
 import axios from "axios";
-import { loginSuccess, setToken } from "./userSlice";
+import { setUser, setToken } from "./userSlice";
 
 const API_URL = "http://localhost:3001/api/v1";
+
+const handleErrors = (error) => {
+  if (error.response) {
+    const status = error.response.status;
+    if (status === 400) {
+      alert("Invalid fields. Please try again.");
+    } else if (status === 401) {
+      alert("Unauthorized. Please sign up.");
+    } else if (status === 500) {
+      alert("Internal Server Error. Please try again later.");
+    }
+  } else {
+    console.error("An unexpected error occurred:", error);
+  }
+};
 
 export const userLogin = (email, password, navigate) => async (dispatch) => {
   try {
     const response = await axios.post(
       `${API_URL}/user/login`,
       JSON.stringify({ email, password }),
-      {
+      { 
         headers: {
-          "Content-Type": "application/json",
-          accept: "application/json",
+        "Content-Type": "application/json", 
         },
       }
     );
@@ -19,24 +33,67 @@ export const userLogin = (email, password, navigate) => async (dispatch) => {
     if (response.status === 200) {
       const { token } = response.data.body;
 
-      dispatch(loginSuccess({ email, password }));
+      dispatch(setUser({ email, password }));
       dispatch(setToken({ body: { token } }));
       navigate("/user");
-      
+
+      return token;
     } else {
       throw new Error("Unexpected response status");
     }
   } catch (error) {
-    if (error.response) {
-      if (error.response.status === 400) {
-        alert("Your email or password is incorrect. Please try again.");
-      } else if (error.response.status === 500) {
-          alert("Internal Server Error. Please try again later.")
-      } else {
-        console.error("An unexpected error occurred:", error);
+    handleErrors(error);
+  }
+};
+
+export const userProfile = (token) => async (dispatch) => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/user/profile`,
+      JSON.stringify({token}),
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        }
       }
+    );
+
+    if (response.status === 200) {
+      const { firstName, lastName, email, userName } = response.data.body;
+
+      dispatch(setUser({ firstName, lastName, email, userName }));
+
     } else {
-      console.error("An unexpected error occurred:", error);
+      throw new Error("Unexpected response status");
     }
+  } catch (error) {
+    handleErrors(error);
+  }
+};
+
+export const changeUserName = (token) => async (dispatch) => {
+  try {
+    const response = await axios.put(
+      `${API_URL}/user/profile`,
+      JSON.stringify({token}),
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        }
+      }
+    );
+
+    if (response.status === 200) {
+      const { userName } = response.data.body;
+
+      dispatch(setUser({ userName }));
+
+    } else {
+      throw new Error("Unexpected response status");
+    }
+  } catch (error) {
+    handleErrors(error);
   }
 };

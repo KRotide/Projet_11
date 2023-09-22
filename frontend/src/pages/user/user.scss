@@ -16,6 +16,7 @@
         color: $color-backgroundLight;
         font-weight: bold;
         padding: 10px;
+        cursor: pointer;
     }
 }
 
@@ -74,6 +75,7 @@
             border-color: $color-tertiary;
             background-color: $color-tertiary;
             color: $color-backgroundLight;
+            cursor: pointer;
 
             @media screen and (min-width: 720px) {
                 width: 200px;

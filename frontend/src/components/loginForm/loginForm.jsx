@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userLogin } from "../../redux/slices/api";
+import { userLogin, userProfile } from "../../redux/slices/api";
 import "./loginForm.scss";
 
 export default function Form() {
@@ -32,7 +32,14 @@ export default function Form() {
         if (email.trim() === "" || password.trim() === "") {
             alert("Please fill out all the fields.");
         } else {
-            dispatch(userLogin(email, password, navigate));
+            try {
+                const token = await dispatch(userLogin(email, password, navigate));
+                if (token) {
+                    dispatch(userProfile(token));
+                }
+            } catch (error) {
+                console.error('Error during login:', error)
+            }
         }
     }
 
@@ -41,7 +48,7 @@ export default function Form() {
             <section className="login">
                 <i className="fa fa-user-circle login__icon"></i>
                 <h1>Sign In</h1>
-                <form onSubmit={handleSubmit}>
+                <form>
                     <div className="login__form__inputWrapper">
                         <label htmlFor="email">Email</label>
                         <input
@@ -64,7 +71,7 @@ export default function Form() {
                         <input type="checkbox" id="remember-me" checked={rememberMe} onChange={handleCheckbox} />
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
-                    <button type="submit" className="login__form__button">Sign In</button>
+                    <button type="submit" className="login__form__button" onClick={handleSubmit}>Sign In</button>
                 </form>
             </section>
         </main>
