@@ -22,7 +22,7 @@ export default function Header() {
             <header>
                 <nav className="main__nav">
                     <Link className="main__nav__logo" to="/">
-                        <img className="main__nav__logo__image" src={Logo} alt="Logo ArgentBank" />
+                        <img className="main__nav__logo__image" src={Logo} alt="ArgentBank logo" />
                         <h1 className="sr-only">Argent Bank</h1>
                     </Link>
                     <Link className="main__nav__item" to="/login">
@@ -37,7 +37,7 @@ export default function Header() {
             <header>
                 <nav className="main__nav">
                     <Link className="main__nav__logo" to="/">
-                        <img className="main__nav__logo__image" src={Logo} alt="Logo ArgentBank" />
+                        <img className="main__nav__logo__image" src={Logo} alt="ArgentBank logo" />
                         <h1 className="sr-only">Argent Bank</h1>
                     </Link>
                     <div className="main__nav__twoItems">
@@ -46,7 +46,7 @@ export default function Header() {
                             {userName}
                         </Link>
                         <Link className="main__nav__item" to="/" onClick={handleLogout}>
-                            <img className="main__nav__item__icon" src={signOutIcon} alt="sign ou icon" />
+                            <img className="main__nav__item__icon" src={signOutIcon} alt="sign out icon" />
                             Sign Out
                         </Link>
                     </div>

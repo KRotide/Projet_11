@@ -9,7 +9,7 @@ html {
   color: $color-primary;
 }
 
-body {
+body, #root {
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -19,6 +19,7 @@ body {
 .main {
   position: relative;
   height: 100vh;
+  flex: 1;
 }
 
 .bg-dark {

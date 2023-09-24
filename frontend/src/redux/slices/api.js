@@ -72,11 +72,11 @@ export const userProfile = (token) => async (dispatch) => {
   }
 };
 
-export const changeUserName = (token) => async (dispatch) => {
+export const changeUserName = (token, newUserName) => async (dispatch) => {
   try {
     const response = await axios.put(
       `${API_URL}/user/profile`,
-      JSON.stringify({token}),
+      JSON.stringify({ userName: newUserName }),
       {
         headers: {
           "Content-Type": "application/json",
@@ -86,9 +86,9 @@ export const changeUserName = (token) => async (dispatch) => {
     );
 
     if (response.status === 200) {
-      const { userName } = response.data.body;
+      const { firstName, lastName, email } = response.data.body;
 
-      dispatch(setUser({ userName }));
+      dispatch(setUser({ firstName, lastName, email, userName: newUserName }));
 
     } else {
       throw new Error("Unexpected response status");

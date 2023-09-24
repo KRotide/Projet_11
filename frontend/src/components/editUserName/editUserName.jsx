@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeUserName } from "../../redux/slices/api";
 import "./editUserName.scss";
 
 export default function EditUserName(props) {
-    const [editUserName, setEditUserName] = useState("");
-
     const dispatch = useDispatch();
 
     const userName = useSelector(state => state.user.user.userName);
@@ -13,13 +11,20 @@ export default function EditUserName(props) {
     const lastName = useSelector(state => state.user.user.lastName);
     const token = useSelector(state => state.user.token);
 
+    const [newUserName, setNewUserName] = useState(userName);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (userName === "") {
-            alert("Please fill out all the fields.");
+        if (newUserName === "") {
+            alert("please fill in the 'User name' field.");
         } else {
-            dispatch(changeUserName(token, editUserName));
+            try {
+                await dispatch(changeUserName(token, newUserName));
+            } catch (error) {
+                console.error("Error updating username:", error);
+                alert("Error updating username. Please try again.");
+            }
         }
     }
 
@@ -32,9 +37,9 @@ export default function EditUserName(props) {
                     <input
                         type="text"
                         id="userName"
-                        value={editUserName}
+                        value={newUserName}
                         autoComplete="true"
-                        onChange={(e) => setEditUserName(e.target.value)}
+                        onChange={(e) => setNewUserName(e.target.value)}
                     />
                 </div>
                 <div className="editUserName__form__inputWrapper">

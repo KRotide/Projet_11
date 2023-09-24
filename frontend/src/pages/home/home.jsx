@@ -1,14 +1,11 @@
 import "./home.scss";
-import Header from "../../components/header/header";
 import IconChat from "../../assets/icon-chat.png";
 import IconMoney from "../../assets/icon-money.png";
 import IconSecurity from "../../assets/icon-security.png";
-import Footer from "../../components/footer/footer";
 
 export default function Home() {
     return (
         <>
-            <Header />
             <main>
                 <div className="banner" aria-label="seedlings grow in a glass filled with money">
                     <section className="banner__content">
@@ -58,7 +55,6 @@ export default function Home() {
                     </div>
                 </section>
             </main>
-            <Footer />
         </>
     )
 }

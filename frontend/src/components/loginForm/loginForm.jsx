@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userLogin, userProfile } from "../../redux/slices/api";
+import userIcon from "../../assets/circle-user-solid.svg";
 import "./loginForm.scss";
 
 export default function Form() {
@@ -46,7 +47,7 @@ export default function Form() {
     return (
         <main className="main bg-dark">
             <section className="login">
-                <i className="fa fa-user-circle login__icon"></i>
+                <img className="login__icon" src={userIcon} alt="user icon" />
                 <h1>Sign In</h1>
                 <form>
                     <div className="login__form__inputWrapper">

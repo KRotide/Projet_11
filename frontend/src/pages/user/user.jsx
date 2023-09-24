@@ -1,9 +1,7 @@
 import "./user.scss";
-import Header from "../../components/header/header";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import EditUserName from "../../components/editUserName/editUserName";
-import Footer from "../../components/footer/footer";
 
 export default function User() {
     const firstName = useSelector(state => state.user.user.firstName);
@@ -17,7 +15,6 @@ export default function User() {
 
     return (
         <>
-            <Header />
             <main className="main bg-dark">
                 {toggleEditUserName ? (
                     < EditUserName setToggleEditUserName={setToggleEditUserName} />
@@ -65,7 +62,6 @@ export default function User() {
                     </div>
                 </section>
             </main>
-            <Footer />
         </>
     )
 }
