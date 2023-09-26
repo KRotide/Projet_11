@@ -101,6 +101,165 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+  /user/accounts:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: User Accounts API
+      description: API for fetching user accounts
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Get Accounts Successfully
+          schema:
+            $ref: '#/definitions/AccountsResponse'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+  /user/accounts/{accountId}/transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: User Account Transactions API
+      description: API for fetching user account transactions
+      parameters:
+        - in: path
+          name: accountId
+          description: targeted account id
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Get Transactions Successfully
+          schema:
+            $ref: '#/definitions/TransactionsResponse'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+  /user/accounts/{accountId}/transactions/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: User Account Transaction Details API
+      description: API for fetching transaction details from user account
+      parameters:
+        - in: path
+          name: accountId
+          description: targeted account id
+          required: true
+        - in: path
+          name: transactionId
+          description: targeted transaction id
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Get Transaction Details Successfully
+          schema:
+            $ref: '#/definitions/TransactionDetailsResponse'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+  /user/accounts/{accountId}/transactions/{transactionId}/category:
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: Edit Transaction Category API
+      description: API to edit a category to a select dropdown
+      parameters:
+        - in: path
+          name: accountId
+          description: targeted account id
+          required: true
+        - in: path
+          name: transactionId
+          description: targeted transaction id
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Category retrieved Successfully
+          schema:
+            $ref: '#/definitions/CategoryResponse'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+  /user/accounts/{accountId}/transactions/{transactionId}/note:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: Add Transaction Note API
+      description: API to add a transaction note
+      parameters:
+        - in: path
+          name: accountId
+          description: targeted account id
+          required: true
+        - in: path
+          name: transactionId
+          description: targeted transaction id
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Note retrieved Successfully
+          schema:
+            $ref: '#/definitions/NoteResponse'
+        '401':
+          description: Unauthorized
+        '405':
+          description: Invalid input
+        '500':
+          description: Internal Server Error
+  /user/accounts/{accountId}/transactions/{transactionId}/note/{noteId}:
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: Delete Transaction Note API
+      description: API to delete a transaction note
+      parameters:
+        - in: path
+          name: accountId
+          description: targeted account id
+          required: true
+        - in: path
+          name: transactionId
+          description: targeted transaction id
+          required: true
+        - in: path
+          name: noteId
+          description: targeted note id
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Note deleted Successfully
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -156,3 +315,110 @@ definitions:
     properties:
       userName:
         type: string
+  AccountsResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body: 
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The account ID
+            title:
+              type: string
+              description: The account title
+            amount:
+              type: number
+              description: The account amount
+            amountDescription:
+              type: string
+              description: Specifies the balance
+  TransactionsResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: array
+        items:
+          type: object
+          properties:
+            id: 
+              type: string
+              description: The transaction ID
+            date:
+              type: string
+              format: date
+              description: The transaction date
+            description:
+              type: string
+              description: Specifies the transaction place
+            amount:
+              type: number
+              description: Specifies the amount transaction
+            balance: 
+              type: number
+              description: Specifies the balance
+  TransactionDetailsResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: array
+        items: 
+          type: object
+          properties:
+            id:
+              type: string
+              description: The detail transaction ID
+            transaction type:
+              type: string
+              description: The transaction type
+            category:
+              type: string
+              description: Transaction category
+            note:
+              type: string
+              description: Transaction note
+  CategoryResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          category:
+            type: string
+            description: Transaction category
+  NoteResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The note ID
+            note:
+              type: string
+              description: Transaction note
