@@ -132,6 +132,7 @@ paths:
         - in: path
           name: accountId
           description: targeted account id
+          type: number
           required: true
       produces:
         - application/json
@@ -156,10 +157,12 @@ paths:
         - in: path
           name: accountId
           description: targeted account id
+          type: number
           required: true
         - in: path
           name: transactionId
           description: targeted transaction id
+          type: number
           required: true
       produces:
         - application/json
@@ -184,10 +187,12 @@ paths:
         - in: path
           name: accountId
           description: targeted account id
+          type: number
           required: true
         - in: path
           name: transactionId
           description: targeted transaction id
+          type: number
           required: true
       produces:
         - application/json
@@ -212,10 +217,12 @@ paths:
         - in: path
           name: accountId
           description: targeted account id
+          type: number
           required: true
         - in: path
           name: transactionId
           description: targeted transaction id
+          type: number
           required: true
       produces:
         - application/json
@@ -242,14 +249,17 @@ paths:
         - in: path
           name: accountId
           description: targeted account id
+          type: number
           required: true
         - in: path
           name: transactionId
           description: targeted transaction id
+          type: number
           required: true
         - in: path
           name: noteId
           description: targeted note id
+          type: number
           required: true
       produces:
         - application/json
