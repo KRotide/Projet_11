@@ -1,17 +1,24 @@
-# Argent Bank API
+# Projet_11
+Site de banque en ligne.
 
-This codebase contains the code needed to run the backend for Argent Bank.
+## Argent Bank
 
-## Getting Started
+Le but de ce projet était d'implémenter le front-end d'une application bancaire avec React.
 
-### Prerequisites
+## Aperçu
 
-Argent Bank uses the following tech stack:
+![Capture d'écran de la page web](https://i.ibb.co/chRt0kS/argent-Bank.webp)
+
+## Pré-requis
+
+Avant de commencer à travailler sur ce projet, assurez-vous d'avoir les éléments suivants installés sur votre système :
 
 - [Node.js v12](https://nodejs.org/en/)
+- npm (Gestionnaire de paquets Node.js)
 - [MongoDB Community Server](https://www.mongodb.com/try/download/community)
+- Yarn
 
-Please make sure you have the right versions and download both packages. You can verify this by using the following commands in your terminal:
+Veuillez vous assurer que vous disposez des bonnes versions et téléchargez les deux packages. Vous pouvez le vérifier en utilisant les commandes suivantes dans votre terminal :
 
 ```bash
 # Check Node.js version
@@ -21,29 +28,22 @@ node --version
 mongo --version
 ```
 
-### Instructions
+## Installation et Utilisation
 
-1. Fork this repo
-1. Clone the repo onto your computer
-1. Open a terminal window in the cloned project
-1. Run the following commands:
+1. Clonez ce dépôt sur votre ordinateur.
+2. Lancez le backend dans votre terminal en exécutant la commande `npm install` pour installer les dépendances du projet.
+3. Toujours dans le répertoire du backend, exécutez la commande `npm run dev:server` pour démarrer le serveur de développement en local.
+4. Toujours dans le répertoire du backend, exécutez la commande `npm run populate-db` pour remplir la base de données avec deux utilisateurs.
+Votre serveur devrait maintenant fonctionner sur http://locahost:3001 et vous aurez désormais deux utilisateurs dans votre base de données MongoDB.
+5. Découvrez la documentation de l’API via [ce lien](http://localhost:3001/api-docs)
 
-```bash
-# Install dependencies
-npm install
+6. Lancez le frontend dans votre terminal en exécutant la commande `npm install` pour installer les dépendances du projet.
+7. Toujours dans le répertoire du frontend, exécutez le projet en mode développement en utilisant la commande suivante `yarn start`.
+L'application sera accessible à l'adresse http://localhost:3000 dans votre navigateur.
 
-# Start local dev server
-npm run dev:server
+## Base de données remplies
 
-# Populate database with two users
-npm run populate-db
-```
-
-Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
-
-## Populated Database Data
-
-Once you run the `populate-db` script, you should have two users in your database:
+Une fois que vous avez exécuté le script `populate-db`, vous devriez avoir deux utilisateurs dans votre base de données :
 
 ### Tony Stark
 
@@ -59,14 +59,7 @@ Once you run the `populate-db` script, you should have two users in your databas
 - Email: `steve@rogers.com`,
 - Password: `password456`
 
-## API Documentation
+## Auteur
 
-To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs
-
-## Design Assets
-
-Static HTML and CSS has been created for most of the site and is located in: `/designs`.
-
-For some of the dynamic features, like toggling user editing, there is a mock-up for it in `/designs/wireframes/edit-user-name.png`.
-
-And for the API model that you will be proposing for transactitons, the wireframe can be found in `/designs/wireframes/transactions.png`.
+- Caroline Ruiz
+- Contact : carolineruiz3802@gmail.com
